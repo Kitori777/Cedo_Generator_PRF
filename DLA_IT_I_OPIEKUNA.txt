@@ -1,0 +1,43 @@
+﻿CEDO - INFORMACJE DLA IT I OPIEKUNA PROCESU
+===========================================
+
+Zakres
+- Generator oparty na Windows PowerShell 5.1, .NET, WinForms i ZIP/Open XML.
+- Do generowania nie uruchamia Excel COM.
+- Pliki wynikowe XLSM bazuja na oryginalnych szablonach w templates/.
+- Osobny modul testowy probuje uzyc Excel COM; moze byc niedostepny
+  na danym stanowisku z powodu konfiguracji Windows lub polityk IT.
+- Plik BAT uruchamia PowerShell z -ExecutionPolicy Bypass. W organizacji
+  wymaga to oceny i akceptacji IT; nie nalezy samodzielnie obchodzic
+  firmowych ograniczen bezpieczeństwa.
+
+Zachowanie danych i logow
+- Baza wskazywana recznie; wynik trafia do wskazanego folderu
+  w nowym podfolderze CEDO_WYNIKI_[data_czas].
+- RAPORT_CEDO.csv: przetworzone rekordy, status, uwagi.
+- MAPOWANIE_*.csv: konfiguracje kolumn, ktore moga powstawac w folderze
+  programu; przed przekazaniem innej osobie mozna usunac prywatne ustawienia.
+- RAPORT_TEST_WINDOWS.txt: raport lokalnej kontroli.
+- Program nie wysyla baz ani PRF do sieci samodzielnie.
+
+Warunki bezpiecznego uzycia
+- Rozpakowac ZIP do folderu z uprawnieniami zapisu.
+- Nie usuwac plikow z templates/ ani zmieniac nazw skryptow.
+- Zapewnic dostep do zrodlowych plikow XLSX/XLSM.
+- Nie uznawac samego statusu OK za merytoryczna akceptacje PRF.
+- Test Excel COM moze zwrocic REGDB_E_CLASSNOTREG 0x80040154;
+  nie jest to rownoznaczne z uszkodzeniem wszystkich wynikow.
+- Test struktury nie potwierdza poprawnego dzialania przyciskow.
+
+Zakres uniwersalnosci
+- Zmienna nazwa arkusza, kolejnosc kolumn, naglowki do 30. wiersza,
+  alternatywne nazwy naglowkow i reczne mapowanie.
+- Ograniczenia: wymagane tabelaryczne dane, rozpoznawalny typ opakowania,
+  odwzorowanie krytycznych pol; nie ma gwarancji obslugi dowolnego pliku Excel.
+
+Status wydania
+- Pakiet przygotowany do dystrybucji wewnetrznej i testow akceptacyjnych.
+- Nie oznacza formalnego zatwierdzenia przez Cedo ani zakonczenia testow
+  na wszystkich komputerach, systemach i zbiorach danych.
+- Przed wdrozeniem: test na reprezentatywnych bazach, otwieranie XLSM
+  w desktopowym Excelu, kontrola poprawnosci mapowania i kontrolek.

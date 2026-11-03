@@ -1,0 +1,37 @@
+﻿CEDO - GENERATOR PACKAGING REQUEST (PRF)
+=======================================
+START TUTAJ - INSTRUKCJA W 2 MINUTY
+
+DO CZEGO SLUZY PROGRAM?
+Z jednego pliku Excel z baza produktow tworzy oddzielne formularze
+Packaging Request dla typow: TRAY, AMERICAN CASE i DIECUT.
+Wykorzystuje oryginalne szablony XLSM Cedo oraz zapisuje raport.
+
+URUCHOMIENIE
+1. Rozpakuj CALY folder CEDO_Generator_PRF z archiwum ZIP do wybranej
+   lokalizacji, np. na Pulpit. NIE uruchamiaj programu wewnatrz ZIP.
+2. Kliknij dwa razy Uruchom_CEDO.bat.
+3. Wskaz plik Excel z baza (XLSX lub XLSM).
+4. Wskaz folder, w ktorym maja powstac wyniki.
+5. W oknie mapowania sprawdz, czy pola PRF wskazuja poprawne
+   kolumny bazy. W razie potrzeby wybierz kolumne recznie.
+6. Kliknij "Zapisz i generuj". Program tworzy WSZYSTKIE rozpoznane typy.
+7. Otworz folder CEDO_WYNIKI_... oraz sprawdz RAPORT_CEDO.csv.
+8. Otworz probke kazdego typu w klasycznym Excelu i sprawdz dane,
+   format, klikalne opcje oraz Lid/Insert.
+
+KONTROLA TECHNICZNA
+Uruchom Uruchom_Test_Windows.bat i wskaz folder CEDO_WYNIKI_....
+W folderze wynikowym powstanie RAPORT_TEST_WINDOWS.txt.
+Test moze nie otworzyc plikow w Excelu, gdy interfejs COM jest niedostepny.
+Wtedy brak testu Excela NIE oznacza automatycznie uszkodzenia formularzy.
+
+GDZIE SZUKAC POMOCY?
+SAMOUCZEK_CEDO.html - czytelny samouczek otwierany w przegladarce.
+SAMOUCZEK_CEDO.txt  - wersja tekstowa do wykorzystania offline.
+DLA_IT_I_OPIEKUNA.txt - wymagania techniczne i zasady utrzymania.
+
+WAZNE
+Nie zmieniaj nazw ani nie usuwaj plikow z folderu templates.
+Przed formalnym wdrozeniem wymagane jest zaakceptowanie skryptow przez IT
+oraz weryfikacja wynikowych formularzy przez wlasciciela procesu.

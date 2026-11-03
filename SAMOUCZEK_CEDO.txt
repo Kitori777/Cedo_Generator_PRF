@@ -1,0 +1,98 @@
+﻿CEDO - GENERATOR PRF | SAMOUCZEK DLA PRACOWNIKA
+=================================================
+
+1. CZYM JEST GENERATOR?
+Program automatycznie tworzy osobne formularze Packaging Request (PRF)
+z bazy Excel. Rozpoznaje typ OC type: Tray, American Case lub Diecut.
+Dla Tray moze uzupelnic takze pola Lid/Insert z tego samego wiersza.
+Nie przepisuje calej bazy do jednego formularza: kazdy rozpoznany
+rekord produktu otrzymuje osobny plik XLSM.
+
+2. CO JEST W FOLDERZE?
+- Uruchom_CEDO.bat: glowny przycisk uruchomienia generatora.
+- Generator_CEDO.ps1: silnik programu; nie trzeba go edytowac.
+- templates/Tray.xlsm: oryginalny szablon Tray i jego opcji.
+- templates/American_Case.xlsm: oryginalny szablon American Case.
+- templates/Diecut.xlsm: oryginalny szablon Diecut.
+- Uruchom_Test_Windows.bat: uruchamia diagnostyke wynikow.
+- Test_CEDO_Windows.ps1: silnik testu; nie trzeba go edytowac.
+- START_TUTAJ.txt: skrocona instrukcja.
+- SAMOUCZEK_CEDO.html: ten samouczek z czytelnym ukladem graficznym.
+- DLA_IT_I_OPIEKUNA.txt: opis wymagan i ograniczen.
+
+3. JAK WYGENEROWAC FORMULARZE?
+KROK A: rozpakuj cale archiwum ZIP. Nie uruchamiaj BAT w podgladzie ZIP.
+KROK B: otworz Uruchom_CEDO.bat.
+KROK C: wskaz baze Excel. Program sprawdza arkusze i pierwsze 30 wierszy,
+        aby odnalezc naglowki i tabele opakowan.
+KROK D: wskaz folder na wyniki. Generator utworzy w nim osobny folder
+        CEDO_WYNIKI_[data_czas] i podfoldery Tray, American_Case, Diecut.
+KROK E: sprawdz okno mapowania (opis ponizej) i wybierz Zapisz i generuj.
+KROK F: otworz RAPORT_CEDO.csv; sprawdz komunikat o liczbie gotowych plikow,
+        bledach i ostrzezeniach. Otworz po jednym pliku kazdego typu.
+
+4. CO OZNACZA OKNO MAPOWANIA?
+- Klucz: techniczna nazwa pola, np. PrintCode. Nie jest to kolumna bazy.
+- Pole w PRF: miejsce docelowe w formularzu, np. Component Master Part Number.
+- Tryb: Z bazy (automatycznie), Stala (ta sama wartosc), Recznie (do
+        uzupelnienia przez pracownika), Pomin (nie wpisuj).
+- Kolumna w bazie: wskazuje numer, litere i nazwe naglowka z pliku Excel.
+- Stala: wartosc do wpisania przy trybie Stala.
+Mozesz wybrac inne zrodlo przy polu z nietypowym naglowkiem. Przed
+zatwierdzeniem skontroluj, czy kazde wymagane pole ma poprawny typ i zrodlo.
+Generator zapamietuje mapowanie w plikach MAPOWANIE_*.csv. W przypadku
+zmiany struktury bazy nalezy zweryfikowac przypisania jeszcze raz.
+
+5. REGULY POL CEDO
+- Component Master Part Number = New OC print code (NIE Part No).
+- Nazwa komponentu jest pobierana z Components name.
+- Typ formularza jest wyznaczany z OC type.
+- Required annual volume bierze prognoze z odpowiedniej kolumny FC
+  (lub recznie wskazanej kolumny) i ZAOKRAGLA W GORE do pelnych kartonow.
+- External board colour i Internal board colour: WHITE tylko dla
+  wyraznego White. Grey/Gray/N/A/puste/inne wartosci => BROWN.
+- Is pallet stackable: YES tylko przy wyraznym potwierdzeniu;
+  w przeciwnym razie NO.
+- Dane Lid/Insert wystepuja w odpowiednim wierszu Tray; nie nalezy
+  laczyc wierszy tylko na podstawie sasiadujacego numeru produktu.
+- Prawidlowy stan przyciskow ocenia sie w klasycznym Excelu na Windows.
+
+6. CO POWSTAJE PO GENEROWANIU?
+CEDO_WYNIKI_[data_czas]/
+  Tray/                formularze Tray
+  American_Case/       formularze American Case
+  Diecut/              formularze Diecut
+  RAPORT_CEDO.csv      status dla kazdego przetworzonego rekordu
+
+7. JAK CZYTAC RAPORT?
+Status OK: formularz zostal zapisany. To nie jest ostateczna akceptacja
+merytoryczna danych ani kontrolek w Excelu.
+Status BLAD: formularza nie udalo sie przygotowac; sprawdz przyczyne.
+Ostrzezenia: pole jest puste, zrodlo niejednoznaczne lub wymaga kontroli.
+Brak New OC print code moze spowodowac odrzucenie danego rekordu.
+Pozostale poprawne rekordy nadal sa przetwarzane.
+
+8. DODATKOWY TEST PLIKOW
+Uruchom Uruchom_Test_Windows.bat. Wybierz CEDO_WYNIKI_[data_czas].
+Test sprawdza wewnetrzna strukture XLSM i probuje otworzyc formularze
+w Excelu tylko do odczytu. Wynik trafia do RAPORT_TEST_WINDOWS.txt.
+Jesli Excel COM jest zablokowany (np. 0x80040154), raport pokaze
+"TEST EXCELA: NIE WYKONANO". Nie jest to automatycznie blad plikow.
+Przyciski mozna potwierdzic tylko po otwarciu wyniku w Excelu.
+
+9. GDY COS NIE DZIALA
+Nie uruchamia sie BAT: sprawdz, czy archiwum zostalo rozpakowane i czy
+polityka IT dopuszcza uruchamianie PowerShell.
+Brak formularza: sprawdz RAPORT_CEDO.csv, OC type, New OC print code.
+Zly numer w PRF: sprawdz mapowanie New OC print code, nie Part No.
+Puste pola: sprawdz przypisana kolumne i dane konkretnego wiersza.
+Brak kulek w podgladzie: otworz plik w klasycznym Excelu na Windows.
+Blad raportu testu: rozdziel blad struktury XLSM od niedostepnosci COM.
+
+10. PRZED PRZEKAZANIEM GOTOWEGO PRF
+Sprawdz identyfikator komponentu, nazwe, typ opakowania, wymiary,
+parametry druku i kolorow, dane Lid/Insert, roczny wolumen i logistyke.
+Sprawdz, czy wymagane przyciski wyboru sa zaznaczone i dzialaja.
+Nie przekazuj dokumentu z niewyjasnionym bledem lub brakujacym kodem.
+
+PROGRAM GENERUJE PLIKI OFFLINE. NIE WYSYLA ICH AUTOMATYCZNIE E-MAILEM.
