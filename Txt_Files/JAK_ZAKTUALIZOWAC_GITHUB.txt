@@ -1,0 +1,17 @@
+CEDO – AKTUALIZACJA WIDOKU REPOZYTORIUM GITHUB
+
+1. W repozytorium kliknij plik README.md.
+2. Kliknij ikonę ołówka (Edit this file).
+3. Zastąp istniejącą treść zawartością nowego README.md.
+4. Kliknij Commit changes i zatwierdź.
+5. GitHub automatycznie wyświetli nową stronę główną pod listą plików.
+
+Wariant kompletny:
+- Wybierz Add file > Upload files.
+- Dodaj zawartość przygotowanego folderu (bez jego dodatkowego poziomu),
+  zachowując folder templates i nazwy plików.
+- Nie trzeba zmieniać nazw skryptów ani przenosić ich do innych katalogów.
+
+WAŻNE: Repozytorium prywatne; przed udostępnieniem sprawdź zgodę firmy.
+Nie umieszczaj baz produktów, wygenerowanych PRF ani plików konfiguracyjnych
+z danymi wewnętrznymi. Sam README nie zmienia działania generatora.

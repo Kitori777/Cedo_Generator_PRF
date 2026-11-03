@@ -1,0 +1,13 @@
+# Dane wejściowe i wyniki – nie publikować
+CEDO_WYNIKI_*/
+RAPORT_CEDO.csv
+RAPORT_TEST_WINDOWS.txt
+MAPOWANIE_*.csv
+*.log
+*.tmp
+~$*
+
+# Lokalne bazy / kopie źródłowe
+Octopus*.xlsx
+OCTOPUS*.xlsx
+*.bak
