@@ -6,6 +6,7 @@ MAPOWANIE_*.csv
 *.log
 *.tmp
 ~$*
+.idea
 
 # Lokalne bazy / kopie źródłowe
 Octopus*.xlsx
